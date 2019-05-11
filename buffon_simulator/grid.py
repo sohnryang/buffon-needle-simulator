@@ -33,7 +33,7 @@ class Grid:
         """
         gl.glLoadIdentity()
         gl.glTranslatef(self.x, -1, 0.0)
-        gl.glLineWidth(2)
+        gl.glLineWidth(3)
         gl.glBegin(gl.GL_LINES)
         gl.glColor4f(0, 0, 0, 255)
         gl.glVertex2f(0, 0)
