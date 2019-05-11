@@ -32,9 +32,10 @@ class App(Window):
         self.world = World((self.width, self.height), int(argv[1]))
         self.camera = Camera(self, zoom=1.0)
         self.count = int(argv[1])
-        self.label = Label('AAA', font_size=20, x=10, y=self. height - 10,
+        self.label = Label('', font_name='Meslo LG M', font_size=20,
+                           x=10, y=self.height - 10,
                            anchor_x='left', anchor_y='top',
-                           color=(255, 0, 0, 255))
+                           color=(0, 0, 0, 255))
         clock.set_fps_limit(60)
 
     def on_draw(self):
@@ -44,5 +45,11 @@ class App(Window):
         self.clear()
         self.camera.world_projection()
         self.world.draw()
+        self.label.text = '%d out of %d thrown, π = %f' % (
+            self.count - self.world.count,
+            self.count,
+            2 / (self.world.crossed / (self.count - self.world.count))
+            if self.world.crossed > 0 else 0
+        )
         self.camera.label_projection()
         self.label.draw()
