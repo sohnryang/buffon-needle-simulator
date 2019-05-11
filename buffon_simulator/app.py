@@ -26,7 +26,7 @@ class App:
         Initialize self.
         """
         self.win = window.Window(fullscreen=True, vsync=True)
-        self.world = World((self.win.width, self.win.height))
+        self.world = World((self.win.width, self.win.height), count)
         self.camera = Camera(self.win, zoom=1.0)
         self.hud = HUD(self.win)
         self.count = count
