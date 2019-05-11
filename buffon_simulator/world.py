@@ -28,7 +28,6 @@ class World:
         self.next_entitiy_id = 0
         self.width = win_size[0]
         self.height = win_size[1]
-        print(self.width, self.height)
         x = -self.width / self.height
         while x <= self.width / self.height:
             ent = Grid(self.next_entitiy_id, x)
