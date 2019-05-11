@@ -39,11 +39,3 @@ class Camera:
             self.zoom * width_ratio,
             -self.zoom, self.zoom
         )
-
-    def hud_projection(self):
-        """
-        Project the HUD.
-        """
-        gl.glMatrixMode(gl.GL_PROJECTION)
-        gl.glLoadIdentity()
-        gl.gluOrtho2D(0, self.win.width, 0, self.win.height)
