@@ -4,12 +4,16 @@ Simulatino Application
 
 This is a visualizer application for simulation.
 """
-from pyglet import clock, window
+from sys import argv
+from pyglet import clock
+from pyglet.text import Label
+from pyglet.window import Window
 from buffon_simulator.camera import Camera
 from buffon_simulator.world import World
+import pyglet.gl as gl
 
 
-class App:
+class App(Window):
     """
     App(self, count)
 
@@ -20,24 +24,25 @@ class App:
     count : int
         Number of needles to throw
     """
-    def __init__(self, count):
+    def __init__(self, *args, **kwargs):
         """
         Initialize self.
         """
-        self.win = window.Window(fullscreen=True, vsync=True)
-        self.world = World((self.win.width, self.win.height), count)
-        self.camera = Camera(self.win, zoom=1.0)
-        self.count = count
+        super(App, self).__init__(*args, **kwargs)
+        self.world = World((self.width, self.height), int(argv[1]))
+        self.camera = Camera(self, zoom=1.0)
+        self.count = int(argv[1])
+        self.label = Label('AAA', font_size=20, x=10, y=self. height - 10,
+                           anchor_x='left', anchor_y='top',
+                           color=(255, 0, 0, 255))
         clock.set_fps_limit(60)
 
-    def main_loop(self):
+    def on_draw(self):
         """
         The main loop.
         """
-        while not self.win.has_exit:
-            self.win.dispatch_events()
-            self.world.tick()
-            self.camera.world_projection()
-            self.world.draw()
-            clock.tick()
-            self.win.flip()
+        self.clear()
+        self.camera.world_projection()
+        self.world.draw()
+        self.camera.label_projection()
+        self.label.draw()

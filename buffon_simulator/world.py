@@ -64,7 +64,7 @@ class World:
         gl.glLoadIdentity()
         for ent in self.ents.values():
             ent.draw()
-
+    
     def tick(self):
         """
         A tick of the clock in the world.
