@@ -17,10 +17,8 @@ class Grid:
     ----------
     id : int
         The grid's id as an entity.
-    x : int
+    x : float
         The grid's x position.
-    h : int
-        The grid's height.
     """
     def __init__(self, id, x):
         """
