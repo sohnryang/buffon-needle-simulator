@@ -41,5 +41,7 @@ class App:
             self.world.tick()
             self.camera.world_projection()
             self.world.draw()
+            self.camera.hud_projection()
+            self.hud.draw()
             clock.tick()
             self.win.flip()

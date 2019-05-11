@@ -6,6 +6,7 @@ A world (model) class used for pyglet rendering of visualizer.
 """
 from math import pi
 from random import uniform
+from pyglet import clock
 import pyglet.gl as gl
 from buffon_simulator.grid import Grid
 from buffon_simulator.needle import Needle
@@ -32,19 +33,26 @@ class World:
         self.width = win_size[0]
         self.height = win_size[1]
         self.count = count
+        self.crossed = 0
+        clock.schedule_interval(self.throw_needle, 0.02)
         x = -self.width / self.height
         while x <= self.width / self.height:
             ent = Grid(self.next_entitiy_id, x)
             self.ents[ent.id] = ent
             self.next_entitiy_id += 1
             x += 0.2
-        for _ in range(count):
-            x = uniform(-self.width / self.height, self.width / self.height)
-            y = uniform(-1, 1)
-            theta = uniform(0, pi)
-            ent = Needle(self.next_entitiy_id, x, y, theta)
-            self.ents[ent.id] = ent
-            self.next_entitiy_id += 1
+
+    def throw_needle(self, dt):
+        if self.count < 1:
+            return None
+        x = uniform(-self.width / self.height, self.width / self.height)
+        y = uniform(-1, 1)
+        theta = uniform(0, pi)
+        ent = Needle(self.next_entitiy_id, x, y, theta)
+        self.crossed += int(ent.cross_check(x, theta))
+        self.ents[ent.id] = ent
+        self.next_entitiy_id += 1
+        self.count -= 1
 
     def draw(self):
         """
