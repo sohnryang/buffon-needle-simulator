@@ -12,11 +12,16 @@ from buffon_simulator.world import World
 
 class App:
     """
-    App(self)
+    App(self, count)
 
     The application object.
+
+    Parameters
+    ----------
+    count : int
+        Number of needles to throw
     """
-    def __init__(self):
+    def __init__(self, count):
         """
         Initalize self.
         """
@@ -24,6 +29,7 @@ class App:
         self.world = World((self.win.width, self.win.height))
         self.camera = Camera(self.win, zoom=1.0)
         self.hud = HUD(self.win)
+        self.count = count
         clock.set_fps_limit(60)
 
     def main_loop(self):
