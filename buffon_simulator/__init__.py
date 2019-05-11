@@ -7,6 +7,6 @@ def run_simulation(count):
     from buffon_simulator.simulator import Simulator
     sim = Simulator(count)
     sim.run_simulation()
-    from buffon_simulator.window import Window
-    win = Window()
-    pyglet.app.run()
+    from buffon_simulator.app import App
+    application = App()
+    application.main_loop()
