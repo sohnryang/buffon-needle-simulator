@@ -23,7 +23,7 @@ class App:
     """
     def __init__(self, count):
         """
-        Initalize self.
+        Initialize self.
         """
         self.win = window.Window(fullscreen=True, vsync=True)
         self.world = World((self.win.width, self.win.height))

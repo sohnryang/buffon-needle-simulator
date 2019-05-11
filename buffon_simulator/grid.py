@@ -22,7 +22,7 @@ class Grid:
     """
     def __init__(self, id, x):
         """
-        Initalize self.
+        Initialize self.
         """
         self.id = id
         self.x = x

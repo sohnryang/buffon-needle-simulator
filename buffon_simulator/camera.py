@@ -22,7 +22,7 @@ class Camera:
     """
     def __init__(self, win, zoom=1.0):
         """
-        Initalize self.
+        Initialize self.
         """
         self.win = win
         self.zoom = zoom
