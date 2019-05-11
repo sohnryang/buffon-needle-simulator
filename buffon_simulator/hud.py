@@ -19,16 +19,6 @@ class HUD:
         Initialize self.
         """
         self.fps = clock.ClockDisplay()
-        meslo = font.load('Noto Sans', 10)
-        self.text = font.Text(
-            meslo,
-            'Hello, world!',
-            x=win.width / 2,
-            y=win.width / 2,
-            halign=font.Text.CENTER,
-            valign=font.Text.CENTER,
-            color=(0, 0, 0, 255)
-        )
 
     def draw(self):
         """
@@ -36,5 +26,4 @@ class HUD:
         """
         gl.glMatrixMode(gl.GL_MODELVIEW)
         gl.glLoadIdentity()
-        self.text.draw()
         self.fps.draw()
