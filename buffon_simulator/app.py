@@ -4,6 +4,7 @@ Simulatino Application
 
 This is a visualizer application for simulation.
 """
+from platform import system
 from pyglet import clock
 from pyglet.text import Label
 from pyglet.window import Window
@@ -31,7 +32,13 @@ class App(Window):
         self.world = World((self.width, self.height), count)
         self.camera = Camera(self, zoom=1.0)
         self.count = count
-        self.label = Label('', font_name='Meslo LG M', font_size=20,
+        if system() == 'Windows':
+            self.font = 'Consolas'
+        elif system() == 'Darwin':
+            self.font = 'Monaco'
+        else:
+            self.font = 'Meslo LG M'
+        self.label = Label('', font_name=self.font, font_size=20,
                            x=10, y=self.height - 10,
                            anchor_x='left', anchor_y='top',
                            color=(0, 0, 0, 255))
