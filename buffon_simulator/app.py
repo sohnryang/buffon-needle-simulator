@@ -4,7 +4,6 @@ Simulatino Application
 
 This is a visualizer application for simulation.
 """
-from sys import argv
 from pyglet import clock
 from pyglet.text import Label
 from pyglet.window import Window
@@ -24,14 +23,14 @@ class App(Window):
     count : int
         Number of needles to throw
     """
-    def __init__(self, *args, **kwargs):
+    def __init__(self, count, *args, **kwargs):
         """
         Initialize self.
         """
         super(App, self).__init__(*args, **kwargs)
-        self.world = World((self.width, self.height), int(argv[1]))
+        self.world = World((self.width, self.height), count)
         self.camera = Camera(self, zoom=1.0)
-        self.count = int(argv[1])
+        self.count = count
         self.label = Label('', font_name='Meslo LG M', font_size=20,
                            x=10, y=self.height - 10,
                            anchor_x='left', anchor_y='top',
