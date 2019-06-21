@@ -42,7 +42,7 @@ class World:
             self.next_entitiy_id += 1
             x += 0.2
 
-    def throw_needle(self, dt):
+    def throw_needle(self):
         if self.count < 1:
             return None
         x = uniform(-self.width / self.height, self.width / self.height)
@@ -64,7 +64,7 @@ class World:
         gl.glLoadIdentity()
         for ent in self.ents.values():
             ent.draw()
-    
+
     def tick(self):
         """
         A tick of the clock in the world.
