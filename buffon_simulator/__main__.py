@@ -3,4 +3,7 @@
 from sys import argv
 import buffon_simulator
 
-buffon_simulator.run_simulation(int(argv[1]))
+if len(argv) > 1:
+    buffon_simulator.run_simulation(int(argv[1]))
+else:
+    buffon_simulator.run_simulation(1500)
